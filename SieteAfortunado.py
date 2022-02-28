@@ -10,6 +10,7 @@
     # Eventos
 
 import tkinter
+import random
 
 from tkinter import *
 
@@ -42,7 +43,27 @@ class SieteAfortunado:
 
      #--- Funcion del boton
     def jugar(self):
-        print("Jugando!")
+        # print("Jugando!")
+        hay_siete = False
+         # Tenemos que generar 3 numeros aleatorios
+        for i in range(3):
+            valor = self.generar_numero()
+            self.campos[i].set(valor)
+            if(valor == 7) :
+                hay_siete = True
+
+         # Si alguno de los numeros generado es un 7 hemos ganado
+        if(hay_siete):
+             # Se muestra el premio en la ventana
+            self.gano.pack(side=BOTTOM) 
+        else:
+             # Borramos el premio de la ventana
+            self.gano.pack_forget()
+        
+    
+     #--- Numero aleatorio entre 0 y 9, ambos inclusive
+    def generar_numero(self):
+        return random.randint(0,9)
 
 jugar = SieteAfortunado()
     
